@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Copy, Check } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { TOKEN, QUANTUM_STATES } from "@/lib/constants";
@@ -11,7 +12,14 @@ export function Footer() {
   const [quantumState, setQuantumState] = useState<string>("UNSTABLE");
   const [fartsDetected, setFartsDetected] = useState<string>("∞");
   const [promptVisible, setPromptVisible] = useState(true);
+  const [copied, setCopied] = useState(false);
   const reducedMotion = useReducedMotion();
+
+  const copyAddress = useCallback(async () => {
+    await navigator.clipboard.writeText(TOKEN.address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, []);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -59,6 +67,26 @@ export function Footer() {
           explain it to someone at a family dinner. No financial value. No
           utility. No refunds. Entertainment only.
         </p>
+      </div>
+
+      {/* Contract address */}
+      <div className="mx-auto mt-4 flex max-w-5xl items-center justify-center gap-2">
+        <span className="text-xs text-muted-foreground">CA:</span>
+        <button
+          onClick={copyAddress}
+          className="group flex items-center gap-1.5 rounded-md border border-border/50 bg-muted/50 px-3 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:border-border hover:text-foreground"
+          title="Click to copy contract address"
+        >
+          <span className="hidden sm:inline">{TOKEN.address}</span>
+          <span className="sm:hidden">
+            {TOKEN.address.slice(0, 6)}...{TOKEN.address.slice(-4)}
+          </span>
+          {copied ? (
+            <Check className="size-3 text-green-500" />
+          ) : (
+            <Copy className="size-3 opacity-50 group-hover:opacity-100" />
+          )}
+        </button>
       </div>
 
       {/* Terminal status readout */}

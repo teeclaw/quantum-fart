@@ -5,6 +5,7 @@ export const TOKEN = {
   description:
     "The first memecoin peer-reviewed by absolutely no one. Built on Base. Backed by gas.",
   network: "Base",
+  address: "0x8136beed06516f81a1b3a16d72afbb0dea4aeba3" as `0x${string}`,
 } as const;
 
 export const SOCIAL_LINKS = {

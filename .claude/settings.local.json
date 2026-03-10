@@ -11,7 +11,9 @@
       "Bash(if not exist \"D:\\\\Harry\\\\BasedNouns\\\\CodeProject\\\\quantum-fart-entanglement\\\\hooks\" mkdir \"D:\\\\Harry\\\\BasedNouns\\\\CodeProject\\\\quantum-fart-entanglement\\\\hooks\")",
       "Bash(npx skillfish:*)",
       "Bash(npx next build:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm audit:*)",
+      "Bash(git add:*)"
     ]
   }
 }
